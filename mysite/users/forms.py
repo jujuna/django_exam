@@ -26,7 +26,8 @@ class CustomUserForm(forms.ModelForm):
             "email",
             "mobile",
             "password1",
-            "password2"
+            "password2",
+            "balance",
         )
     
 

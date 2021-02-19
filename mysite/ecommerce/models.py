@@ -13,4 +13,4 @@ class Ticket(models.Model):
 class Order(models.Model):
     create_date=models.DateTimeField()
     price=models.CharField(max_length=10)
-    ticket=models.ForeignKey("Ticket", on_delete=models.CASCADE)
+    ticket=models.ForeignKey(Ticket, on_delete=models.CASCADE)
