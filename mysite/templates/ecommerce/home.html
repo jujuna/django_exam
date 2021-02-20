@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <p>სულ წელიწადში გაკეთდა {{stat.in_year}} ორდერი </p>
+    <p>წულ კვირაში გაკეთდა {{stat.in_week}} ორდერი</p>
+    <p>სულ თვეში  გაკეთდა {{stat.in_month}} ორდერი</p>
+    <p>წელიწადში დახარჯე {{stat.sum_in_year}}₾</p>
+    <p>თვეში დახარჯე {{stat.sum_in_month}}₾</p>
+    <p>კვირაში დახარჯე {{stat.sum_in_week}}₾</p>
+    
+
+    <form method="POST">
+        {% csrf_token %}
+        {{form}}
+        {{form.errors}}
+        <button type="submit">შენახვა</button>
+    </form>
+{% endblock %}

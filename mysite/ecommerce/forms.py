@@ -1,11 +1,20 @@
+from django.http import request
 from ecommerce.models import Ticket, Order
 from django import forms
+from django.core.exceptions import ValidationError
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
-
-TicketForm(forms.ModelForm):
+class TicketForm(forms.ModelForm):
+    
     class Meta:
-        model=Ticket
+        model = Ticket
+        fields='__all__'
 
-OrderForm(forms.ModelForm):
+class OrderForm(forms.ModelForm):
+
     class Meta:
-        model=Order
+        model = Order
+        fields=("price", "ticket")
+
+    

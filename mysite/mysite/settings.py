@@ -128,3 +128,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     BASE_DIR / "static",
 )
+
+LOGIN_REDIRECT_URL = 'ecommerce:home'
+LOGOUT_REDIRECT_URL = 'user:login'
+LOGIN_URL = 'user:login'

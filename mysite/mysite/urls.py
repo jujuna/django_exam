@@ -4,5 +4,7 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('users.urls')),
+    path('',include('ecommerce.urls', namespace='ecommerce')),
+    path('user/', include('users.urls', namespace='user')),
+
 ]
