@@ -22,6 +22,9 @@
                 <li><a href="{% url 'ecommerce:order_list' %}">ჩემი ბილეთები</a></li>
                 <li><a href="{% url 'ecommerce:home' %}">მთავარი გვერდი</a></li>
                 <li><a href="{% url 'ecommerce:logout' %}">გამოსვლა</a></li>
+                {% else %}
+                <li><a href="{% url 'user:login' %}">ავტორიზაცია</a></li>
+                <li><a href="{% url 'user:registration' %}">რეგისტრაცია</a></li>
                 {% endif %}
 
               </ul>
