@@ -1,5 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
+
+  <form  method="POST" >
+    {% csrf_token %}
+    <p>ბილეთის მოძებნა</p>
+    <input type="text" placeholder="შეიყვანე ფილმის სახელი" name="ticket">
+    <button type="submit">ძებნა</button>
+  </form>
+  {% for i in ticket %}
+    <p>ნაპოვნი ბილეთები</p>
+    <p>სახელი: {{i}}, დრო: {{i.create_date}}</p>
+  {% endfor %}
+
+
     {% for i in users %}
         <p>ფილმი- {{i}}</p>
     {% endfor %}

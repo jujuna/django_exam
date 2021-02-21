@@ -13,8 +13,19 @@ class TicketForm(forms.ModelForm):
 
 class OrderForm(forms.ModelForm):
 
+    def __init__(self,request,*args,**kwargs):
+        super(OrderForm,self).__init__(*args,**kwargs)
+        self.request=request
+
     class Meta:
         model = Order
         fields=("price", "ticket")
+
+    def clean_price(self):
+        price = self.cleaned_data['price']
+        user_balance=self.request.user.balance
+        if int(price)>user_balance:
+            raise forms.ValidationError("თანხა არ არის ")
+        return price
 
     

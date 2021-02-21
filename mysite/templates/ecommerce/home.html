@@ -6,12 +6,27 @@
     <p>წელიწადში დახარჯე {{stat.sum_in_year}}₾</p>
     <p>თვეში დახარჯე {{stat.sum_in_month}}₾</p>
     <p>კვირაში დახარჯე {{stat.sum_in_week}}₾</p>
+
+    <p>ბალანსზე გაქვს {{user.balance}}₾</p>
     
 
-    <form method="POST">
+    <form method="POST" novalidate >
         {% csrf_token %}
-        {{form}}
-        {{form.errors}}
+        <div class="input-field col s6">
+            {{ form.price }}
+        <label for="id_car">ფასი</label>
+        {% for error in form.errors.price %}
+            <p class="error">{{ error }}</p>
+        {% endfor %}
+        </div>
+        <div class="input-field col s6">
+        {{ form.ticket }}
+        <label for="id_car">ფილმი</label>
+        {% for error in form.errors.car %}
+            <p class="error">{{ error }}</p>
+        {% endfor %}
+            
+        </div>
         <button type="submit">შენახვა</button>
     </form>
 {% endblock %}

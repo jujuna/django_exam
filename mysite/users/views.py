@@ -5,7 +5,6 @@ from .forms import CustomUserForm
 from django.conf import settings
 
 
-
 def registration(request):
     if request.user.is_authenticated:
         return redirect('ecommerce:order_list')
@@ -32,3 +31,4 @@ def login(request):
                 return redirect(settings.LOGIN_REDIRECT_URL)
 
     return render(request, "users/login.html", {"form":form})
+

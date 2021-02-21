@@ -27,7 +27,9 @@ def order_list(request):
         users = paginator.page(1)
     except EmptyPage:
         users = paginator.page(paginator.num_pages)
-    return render(request, 'ecommerce/tickets.html', {'users':users})
+    ticket = request.POST.get('ticket')
+    ticket_search = Order.objects.filter(ticket__name=ticket).all()
+    return render(request, 'ecommerce/tickets.html', {'users':users, 'ticket':ticket_search})
 
 def logout(request):
     auth.logout(request)
@@ -44,12 +46,15 @@ def home(request):
     sum_in_year=Sum('price',filter=Q(create_date__gte=today-timezone.timedelta(days=365))))
 
 
-    form = OrderForm()
+    form = OrderForm(request=request)
     if request.method=="POST":
-        form=OrderForm(request.POST)
+        form=OrderForm(data=request.POST,request=request)
         if form.is_valid():
-            order=form.save(commit=False)
-            order.user=request.user
+            order = form.save(commit=False)
+            order.user = request.user
             order.save()
     
     return render(request, 'ecommerce/home.html', {'stat':user_statistic, 'form':form})
+
+
+
