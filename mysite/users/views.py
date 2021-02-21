@@ -13,6 +13,9 @@ def registration(request):
         form = CustomUserForm(request.POST)
         if form.is_valid():
             form.save()
+            new_user=authenticate(username=form.cleaned_data['email'],password=form.cleaned_data['password1'])
+            login(request, new_user)
+            return redirect(settings.LOGIN_REDIRECT_URL)
 
     return render(request, "users/registration.html", {"form":form})
 
